@@ -15,14 +15,6 @@ settings = Settings(maximum_lotto_number_range=69,
                     number_of_tickets=200)
 
 
-def check_duplicate_lotto_numbers(lotto_numbers: list[int], number_to_check: int) -> bool:
-    """Checks if the there is a lotto number that is the same as the generated lotto number,
-    if False it means that there is a duplicate lotto number
-    """
-
-    return number_to_check in lotto_numbers
-
-
 def _generate_random_lotto_numbers() -> list[int]:
     """Generates a random lotto numbers, and it makes sure they are unique using the check_duplicate_lotto_numbers
     function"""
@@ -33,7 +25,7 @@ def _generate_random_lotto_numbers() -> list[int]:
         random_number = random.randint(1, settings.maximum_lotto_number_range)
 
         # Check number if unique
-        is_unique = not check_duplicate_lotto_numbers(lotto_numbers, random_number)
+        is_unique = random_number in lotto_numbers
 
         if is_unique:
             lotto_numbers.append(random_number)
